@@ -13,6 +13,7 @@
 				ngModel
 				name="name"
 				required
+				#nameFocus
 				#name="ngModel">
 			<span class="invalid-feedback" *ngIf="!name.valid && (name.touched || form.submitted)">Name required</span>
 		</div>
@@ -22,10 +23,11 @@
 			<select
 				class="form-control"
 				[ngClass]="{ 'is-invalid': !species.valid && (species.touched || form.submitted) }"
-				id="specie"
+				id="species"
 				ngModel
-				name="spiecie"
+				name="species"
 				required
+				#speciesFocus
 				#species="ngModel">
 				<option value="" disabled selected>Select..</option>
 				<option *ngFor="let species of speciesArr" [value]="species">{{ species }}</option>
@@ -33,14 +35,34 @@
 			<span class="invalid-feedback" *ngIf="!species.valid && (species.touched || form.submitted)">Species required</span>
 		</div>
 
-		<div class="form-group required" requierd>
+		<div class="form-group required">
 			<label class="control-label" for="radio">Gender</label> <br />
+
+			<!-- <div class="custom-control custom-radio custom-control-inline">
+				<input type="radio" id="gender" [value]="gender" name="gender" class="custom-control-input">
+				<label class="custom-control-label" for="gender">Male</label>
+			</div>
+			<div class="custom-control custom-radio custom-control-inline">
+				<input type="radio" id="gender" [value]="gender" name="gender" class="custom-control-input">
+				<label class="custom-control-label" for="gender">Female</label>
+			</div>
+			<div class="custom-control custom-radio custom-control-inline">
+				<input type="radio" id="gender" [value]="gender" name="gender" class="custom-control-input">
+				<label class="custom-control-label" for="gender">n/a</label>
+			</div>
+			<span class="invalid-feedback" *ngIf="!form.controls.gender?.valid && form.submitted">Gender required</span> -->
+
 			<ng-container *ngFor="let gender of ['Male', 'Female', 'n/a']">
-				<label class="radio-inline"> {{ gender }}:
-					<input type="radio" name="gender" [value]="gender" ngModel required />
+				<label class="radio-inline" > {{ gender }}:
+					<input
+					type="radio"
+					name="gender"
+					[value]="gender"
+					ngModel
+					required/>
 				</label>
 			</ng-container>
-
+			<div class="invalid-feedback-custom" *ngIf="!form.controls.gender?.valid && form.submitted"> Gender required</div>
 		</div>
 
 		<div class="form-group">

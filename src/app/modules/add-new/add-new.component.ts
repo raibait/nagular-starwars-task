@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, } from '@angular/core';
 
 import { Validators, NgForm, NgControl } from '@angular/forms';
 
@@ -13,9 +13,12 @@ import { StarwarsService } from '../services/starwars.service';
 export class AddNewComponent implements OnInit {
 
 	@ViewChild('form') form: NgForm;
-	@ViewChild('name') name;
-	@ViewChild('species') species;
+	@ViewChild('name') name: NgControl;
+	@ViewChild('species') species: NgControl;
 	@ViewChild('gender') gender: NgControl;
+	@ViewChild('nameFocus') nameFocus: ElementRef;
+	@ViewChild('speciesFocus') speciesFocus: ElementRef;
+	@ViewChild('genderFocus') genderFocus: ElementRef;
 
 	private controls: NgControl[];
 
@@ -32,9 +35,9 @@ export class AddNewComponent implements OnInit {
 		if(this.form.valid){
 			console.log('valid')
 		} else {
-			//this.name.nativeElement.focus();
-			console.log(this.species);
-			console.log(this.controls);
+			this.speciesFocus.nativeElement.focus();
+			console.log(!this.form.controls.gender.valid && this.form.submitted);
+			console.log(this.form);
 		}
 
 	}
