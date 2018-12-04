@@ -9,15 +9,15 @@ import { ICharacter } from '../shared/models/i-character'
 	providedIn: 'root'
 })
 export class StarwarsService {
-	private readonly starwarsApi = 'http://localhost:3000';
+	private readonly starwarsApiUrl = 'http://localhost:3000';
 
 	constructor(private readonly http: HttpClient) { }
 
 	public getCharacters(): Observable<ICharacter[]> {
-		return this.http.get<ICharacter[]>(`${this.starwarsApi}/characters`);
+		return this.http.get<ICharacter[]>(`${this.starwarsApiUrl}/characters`);
 	}
 
 	public getSpecies(): Observable<String[]> {
-		return this.http.get<String[]>(`${this.starwarsApi}/species`);
+		return this.http.get<String[]>(`${this.starwarsApiUrl}/species`);
 	}
 }

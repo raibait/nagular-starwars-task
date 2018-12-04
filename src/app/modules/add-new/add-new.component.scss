@@ -1,0 +1,22 @@
+.container {
+    width: 400px;
+    padding: 44px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-top: 55px;
+}
+
+.radio-inline {
+    margin-right: 20px;
+    margin-bottom: 0px;
+}
+
+.control-label {
+    font-weight: 700;
+}
+
+.form-group.required .control-label:after {
+    color: rgb(10, 42, 221);
+    content: "*";
+    margin-left: 8px;
+}

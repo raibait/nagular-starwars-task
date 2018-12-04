@@ -1,3 +1,54 @@
-<p>
-  add-new works!
-</p>
+<h1>Add New Character</h1>
+<div class="container">
+	<h3>Character info:</h3>
+
+	<form (ngSubmit)="submitForm()" #form="ngForm">
+		<div class="form-group required">
+			<label class="control-label" for="name">Name</label>
+			<input
+				type="text"
+				class="form-control"
+				[ngClass]="{ 'is-invalid': !name.valid && (name.touched || form.submitted) }"
+				id="name"
+				ngModel
+				name="name"
+				required
+				#name="ngModel">
+			<span class="invalid-feedback" *ngIf="!name.valid && (name.touched || form.submitted)">Name required</span>
+		</div>
+
+		<div class="form-group required">
+			<label class="control-label">Species</label>
+			<select
+				class="form-control"
+				[ngClass]="{ 'is-invalid': !species.valid && (species.touched || form.submitted) }"
+				id="specie"
+				ngModel
+				name="spiecie"
+				required
+				#species="ngModel">
+				<option value="" disabled selected>Select..</option>
+				<option *ngFor="let species of speciesArr" [value]="species">{{ species }}</option>
+			</select>
+			<span class="invalid-feedback" *ngIf="!species.valid && (species.touched || form.submitted)">Species required</span>
+		</div>
+
+		<div class="form-group required" requierd>
+			<label class="control-label" for="radio">Gender</label> <br />
+			<ng-container *ngFor="let gender of ['Male', 'Female', 'n/a']">
+				<label class="radio-inline"> {{ gender }}:
+					<input type="radio" name="gender" [value]="gender" ngModel required />
+				</label>
+			</ng-container>
+
+		</div>
+
+		<div class="form-group">
+			<label class="control-label" for="homeworld">Homeworld</label>
+			<input type="text" name="homeworld" class="form-control" id="homeworld" ngModel name="homeworld">
+		</div>
+
+		<button type="submit" class="btn btn-success">Submit</button>
+
+	</form>
+</div>
