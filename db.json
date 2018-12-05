@@ -206,6 +206,20 @@
       "species": "Cerean",
       "gender": "female",
       "homeworld": "cc"
+    },
+    {
+      "name": "f",
+      "species": "Besalisk",
+      "gender": "female",
+      "homeworld": "qeqe",
+      "id": 25
+    },
+    {
+      "name": "sad",
+      "species": "Besalisk",
+      "gender": "female",
+      "homeworld": "da",
+      "id": 26
     }
   ]
 }

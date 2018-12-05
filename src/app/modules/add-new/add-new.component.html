@@ -13,7 +13,6 @@
 				ngModel
 				name="name"
 				required
-				#nameFocus
 				#name="ngModel">
 			<span class="invalid-feedback" *ngIf="!name.valid && (name.touched || form.submitted)">Name required</span>
 		</div>
@@ -27,7 +26,6 @@
 				ngModel
 				name="species"
 				required
-				#speciesFocus
 				#species="ngModel">
 				<option value="" disabled selected>Select..</option>
 				<option *ngFor="let species of speciesArr" [value]="species">{{ species }}</option>
@@ -46,8 +44,7 @@
 					name="gender"
 					class="custom-control-input"
 					[(ngModel)]="gender"
-					required
-					#genderFocus>
+					required>
 				<label class="custom-control-label" for="male">Male</label>
 			</div>
 			<div class="custom-control custom-radio custom-control-inline">
@@ -87,5 +84,5 @@
 		</div>
 		<button type="submit" class="btn btn-success">Submit</button>
 	</form>
-	<button class="btn btn-danger" (click)="goBack()">Cancel</button>
+	<button class="btn btn-danger" (click)="cancel()">Cancel</button>
 </div>
