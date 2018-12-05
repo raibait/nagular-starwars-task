@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef, } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { Validators, NgForm, NgControl } from '@angular/forms';
+import { NgForm, NgControl } from '@angular/forms';
 
 
 import { StarwarsService } from '../services/starwars.service';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
 	selector: 'add-new',
@@ -20,25 +22,33 @@ export class AddNewComponent implements OnInit {
 	@ViewChild('speciesFocus') speciesFocus: ElementRef;
 	@ViewChild('genderFocus') genderFocus: ElementRef;
 
-	private controls: NgControl[];
+
+	private controls: ElementRef[];
 
 	public speciesArr: String[];
 
-	constructor(private readonly starwarsService: StarwarsService) { }
+	constructor(
+		private readonly starwarsService: StarwarsService,
+		private readonly router: Router
+	) { }
 
 	ngOnInit() {
-		this.controls= [this.name, this.species, this.gender];
+		this.controls= [this.nameFocus, this.speciesFocus, this.genderFocus];
 		this.starwarsService.getSpecies().subscribe(species => this.speciesArr = species);
 	}
 
 	public submitForm() {
 		if(this.form.valid){
-			console.log('valid')
+			console.log(this.form.value);
+			this.starwarsService.addCharacter(this.form.value).subscribe(val=>console.log(val));
 		} else {
-			this.speciesFocus.nativeElement.focus();
-			console.log(!this.form.controls.gender.valid && this.form.submitted);
-			console.log(this.form);
+			let invalidFields = [].slice.call(document.getElementsByClassName('ng-invalid'));
+			invalidFields[1].focus();
 		}
+	}
 
+	public goBack() {
+		console.log('click')
+		this.router.navigate(['/list-view']);
 	}
 }

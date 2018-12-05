@@ -11,6 +11,8 @@ import { ICharacter } from '../shared/models/i-character'
 export class StarwarsService {
 	private readonly starwarsApiUrl = 'http://localhost:3000';
 
+	nextCharacterId: number = 21;
+
 	constructor(private readonly http: HttpClient) { }
 
 	public getCharacters(): Observable<ICharacter[]> {
@@ -19,5 +21,14 @@ export class StarwarsService {
 
 	public getSpecies(): Observable<String[]> {
 		return this.http.get<String[]>(`${this.starwarsApiUrl}/species`);
+	}
+
+	public addCharacter(payload) {
+		const body: ICharacter = {
+			id: this.nextCharacterId,
+			...payload
+		};
+		this.nextCharacterId ++;
+		return this.http.post(`${this.starwarsApiUrl}/characters`, body);
 	}
 }
