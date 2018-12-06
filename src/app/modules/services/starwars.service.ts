@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -13,19 +13,25 @@ import { ICharacter } from '../shared/models/i-character'
 export class StarwarsService {
 	private readonly starwarsApiUrl = 'http://localhost:3000';
 
-	link: string[];
+	private paginationPages: Object;
 
 	constructor(private readonly http: HttpClient) { }
 
 	public getCharacters(page): Observable<ICharacter[]> {
 		return this.http.get<ICharacter[]>(`${this.starwarsApiUrl}/characters?_page=${page}`, { observe: 'response' }).pipe(
 			map((resp) => {
-				this.link = resp.headers.get("Link").split(',').map((val) => {
-					let link = val.slice(0, val.indexOf(','))
-					let key = val.slice(0, val.indexOf(','))
-					return val;
+				let newPages = {};
+				resp.headers.get("Link").split(',').map((val) => {
+					let page = +val.slice(0, val.indexOf(';')).replace(`${this.starwarsApiUrl}/characters?_page=`,'').match(/\d+/)[0];
+					let key = val.split(/"/)[1];
+
+					newPages={
+						...newPages,
+						[key]: page
+					}
 				});
-				console.log((this.link));
+				this.paginationPages = newPages;
+				console.log(this.paginationPages)
 				return resp.body;
 			})
 		);

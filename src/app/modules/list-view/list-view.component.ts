@@ -12,10 +12,11 @@ import { ICharacter } from '../shared/models/i-character'
 export class ListViewComponent implements OnInit {
 
 	characterList: ICharacter[];
+	private paginationPages: Object;
 
 	constructor(private readonly starwarsService: StarwarsService) {}
 
 	ngOnInit() {
-		this.starwarsService.getCharacters(2).subscribe((response) => console.log(response));
+		this.starwarsService.getCharacters(3).subscribe((response) => console.log(response));
 	}
 }
