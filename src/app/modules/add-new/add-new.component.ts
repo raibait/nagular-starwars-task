@@ -30,6 +30,7 @@ export class AddNewComponent implements OnInit {
 	public submitForm() {
 		if(this.form.valid){
 			this.starwarsService.addCharacter(this.form.value).subscribe(val=>console.log(val));
+			this.router.navigate(['/list-view']);
 		} else {
 			let invalidFields = [].slice.call(document.getElementsByClassName('ng-invalid'));
 			invalidFields[1].focus();

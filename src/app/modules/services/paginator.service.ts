@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
+
+import { IPaginatorData } from '../shared/models/i-paginator-data'
 
 @Injectable({
 	providedIn: 'root'
@@ -9,7 +11,7 @@ export class PaginatorService {
 
 	constructor() { }
 
-	private currentPage: Number;
+	private currentPage: number;
 	private paginationPages: {
 		first?: number
 		prev?: number
@@ -22,7 +24,7 @@ export class PaginatorService {
 		this.paginationPages = paginationPages;
 	}
 
-	public getPages() {
+	public getPages(): Observable<IPaginatorData> {
 		return of({
 			pages: [
 				this.paginationPages.prev,

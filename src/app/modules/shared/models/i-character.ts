@@ -1,7 +1,7 @@
 export interface ICharacter {
     id?: number;
 	name: string;
-	spiecies: string;
+	species: string;
     gender: string;
     homeworld: string;
 }

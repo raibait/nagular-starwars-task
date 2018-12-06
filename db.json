@@ -220,6 +220,27 @@
       "gender": "female",
       "homeworld": "da",
       "id": 26
+    },
+    {
+      "name": "ghf",
+      "species": "Besalisk",
+      "gender": "male",
+      "homeworld": "",
+      "id": 27
+    },
+    {
+      "name": "asd",
+      "species": "Besalisk",
+      "gender": "male",
+      "homeworld": "",
+      "id": 28
+    },
+    {
+      "name": "d",
+      "species": "Besalisk",
+      "gender": "female",
+      "homeworld": "",
+      "id": 29
     }
   ]
 }

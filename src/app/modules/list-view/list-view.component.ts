@@ -4,6 +4,7 @@ import { StarwarsService } from '../services/starwars.service';
 import { PaginatorService } from '../services/paginator.service';
 
 import { ICharacter } from '../shared/models/i-character'
+import { IPaginatorData } from '../shared/models/i-paginator-data'
 
 @Component({
 	selector: 'sl-list-view',
@@ -12,7 +13,7 @@ import { ICharacter } from '../shared/models/i-character'
 })
 export class ListViewComponent implements OnInit {
 
-	private paginationPages: Object;
+	public paginationPages: IPaginatorData;
 
 	public characterList: ICharacter[];
 
@@ -22,19 +23,26 @@ export class ListViewComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		this.getCharacters(3);
+		this.getCharacters(1);
 	}
 
-	private getCharacters(page: number):void {
+	private getCharacters(page: number): void {
 		this.starwarsService.getCharacters(page)
 		.subscribe(
-			res => console.log(res),
+			res => this.characterList = res,
 			err => console.log(err),
 			() => this.getPages()
 		);
 	}
 
-	private getPages():void {
-		this.paginatorService.getPages().subscribe(res => console.log(res));
+	private getPages(): void {
+		this.paginatorService.getPages().subscribe(res => this.paginationPages = res);
 	}
+
+	public changePage(event: Event, page: number) {
+		event.preventDefault();
+		this.getCharacters(page);
+	}
+
+
 }
