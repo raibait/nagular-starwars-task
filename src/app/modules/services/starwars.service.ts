@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { ICharacter } from '../shared/models/i-character'
+import { PaginatorService } from './paginator.service';
 
 
 @Injectable({
@@ -13,9 +14,12 @@ import { ICharacter } from '../shared/models/i-character'
 export class StarwarsService {
 	private readonly starwarsApiUrl = 'http://localhost:3000';
 
-	private paginationPages: Object;
 
-	constructor(private readonly http: HttpClient) { }
+
+	constructor(
+		private readonly http: HttpClient,
+		private readonly paginatorService: PaginatorService
+	) { }
 
 	public getCharacters(page): Observable<ICharacter[]> {
 		return this.http.get<ICharacter[]>(`${this.starwarsApiUrl}/characters?_page=${page}`, { observe: 'response' }).pipe(
@@ -30,8 +34,7 @@ export class StarwarsService {
 						[key]: page
 					}
 				});
-				this.paginationPages = newPages;
-				console.log(this.paginationPages)
+				this.paginatorService.setPages(page, newPages);
 				return resp.body;
 			})
 		);

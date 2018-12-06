@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { StarwarsService } from '../services/starwars.service';
+import { PaginatorService } from '../services/paginator.service';
 
 import { ICharacter } from '../shared/models/i-character'
 
@@ -11,12 +12,29 @@ import { ICharacter } from '../shared/models/i-character'
 })
 export class ListViewComponent implements OnInit {
 
-	characterList: ICharacter[];
 	private paginationPages: Object;
 
-	constructor(private readonly starwarsService: StarwarsService) {}
+	public characterList: ICharacter[];
+
+	constructor(
+		private readonly starwarsService: StarwarsService,
+		private readonly paginatorService: PaginatorService
+	) {}
 
 	ngOnInit() {
-		this.starwarsService.getCharacters(3).subscribe((response) => console.log(response));
+		this.getCharacters(3);
+	}
+
+	private getCharacters(page: number):void {
+		this.starwarsService.getCharacters(page)
+		.subscribe(
+			res => console.log(res),
+			err => console.log(err),
+			() => this.getPages()
+		);
+	}
+
+	private getPages():void {
+		this.paginatorService.getPages().subscribe(res => console.log(res));
 	}
 }
