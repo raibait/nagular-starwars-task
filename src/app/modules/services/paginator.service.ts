@@ -25,7 +25,8 @@ export class PaginatorService {
 	}
 
 	public getPages(): Observable<IPaginatorData> {
-		return of({
+
+		return this.paginationPages? of({
 			pages: [
 				this.paginationPages.prev,
 				this.currentPage,
@@ -36,7 +37,7 @@ export class PaginatorService {
 			firstPage: this.paginationPages.first,
 			lastPage: this.paginationPages.last,
 			currentPage: this.currentPage
-		});
+		}): of(null);
 	}
 
 }

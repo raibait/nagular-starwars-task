@@ -4,7 +4,13 @@
 	<div class="col-sm-6">
 		<div class="form-group">
 			<label for="searchInput" class="sr-only">Search</label>
-			<input type="text" class="form-control" id="searchInput" placeholder="Search...">
+			<input
+			type="text"
+			class="form-control"
+			id="searchInput"
+			placeholder="Search..."
+			[(ngModel)]="searchValue"
+			(ngModelChange)="search()">
 		</div>
 	</div>
 	<div class="col-sm-6 text-sm-right">
@@ -25,7 +31,7 @@
 	</thead>
 	<tbody>
 		<tr *ngFor="let character of characterList; index as i;">
-			<th scope="row">{{i + 1 + (paginationPages.currentPage -1) * 10 }}</th>
+			<th scope="row">{{character.id}}</th>
 			<td>{{character.name}}</td>
 			<td>{{character.species}}</td>
 			<td>{{character.gender}}</td>
@@ -44,7 +50,7 @@
 	</tbody>
 </table>
 
-<nav aria-label="Data grid navigation">
+<nav *ngIf="paginationPages" aria-label="Data grid navigation">
 	<ul class="pagination justify-content-end">
 		<li
 		class="page-item"
@@ -76,3 +82,5 @@
 		</li>
 	</ul>
 </nav>
+
+<h3 [ngStyle]="{'text-align': 'center'}" *ngIf="characterList?.length === 0">No characters</h3>

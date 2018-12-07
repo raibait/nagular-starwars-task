@@ -14,8 +14,8 @@ import { IPaginatorData } from '../shared/models/i-paginator-data'
 export class ListViewComponent implements OnInit {
 
 	public paginationPages: IPaginatorData;
-
 	public characterList: ICharacter[];
+	public searchValue: string;
 
 	constructor(
 		private readonly starwarsService: StarwarsService,
@@ -26,8 +26,8 @@ export class ListViewComponent implements OnInit {
 		this.getCharacters(1);
 	}
 
-	private getCharacters(page: number): void {
-		this.starwarsService.getCharacters(page)
+	private getCharacters(page: number, filter:string = ""): void {
+		this.starwarsService.getCharacters(page, filter)
 		.subscribe(
 			res => this.characterList = res,
 			err => console.log(err),
@@ -39,10 +39,13 @@ export class ListViewComponent implements OnInit {
 		this.paginatorService.getPages().subscribe(res => this.paginationPages = res);
 	}
 
-	public changePage(event: Event, page: number) {
+	public changePage(event: Event, page: number): void {
 		event.preventDefault();
-		this.getCharacters(page);
+		this.getCharacters(page, this.searchValue);
 	}
 
-
+	public search(): void {
+		this.getCharacters(1, this.searchValue);
+		console.log(this.characterList)
+	}
 }
