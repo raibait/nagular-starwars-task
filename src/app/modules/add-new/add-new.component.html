@@ -8,29 +8,31 @@
 			<input
 				type="text"
 				class="form-control"
-				[ngClass]="{ 'is-invalid': !name.valid && (name.touched || form.submitted) }"
+				[ngClass]="{ 'is-invalid': !nameControl.valid && (nameControl.touched || form.submitted) }"
 				id="name"
 				ngModel
 				name="name"
 				required
-				#name="ngModel">
-			<span class="invalid-feedback" *ngIf="!name.valid && (name.touched || form.submitted)">Name required</span>
+				[(ngModel)]="name"
+				#nameControl="ngModel">
+			<span class="invalid-feedback" *ngIf="!name.valid && (nameControl.touched || form.submitted)">Name required</span>
 		</div>
 
 		<div class="form-group required">
 			<label class="control-label">Species</label>
 			<select
 				class="form-control"
-				[ngClass]="{ 'is-invalid': !species.valid && (species.touched || form.submitted) }"
+				[ngClass]="{ 'is-invalid': !speciesControl.valid && (speciesControl.touched || form.submitted) }"
 				id="species"
 				ngModel
 				name="species"
 				required
-				#species="ngModel">
+				[(ngModel)]="species"
+				#speciesControl="ngModel">
 				<option value="" disabled selected>Select..</option>
 				<option *ngFor="let species of speciesArr" [value]="species">{{ species }}</option>
 			</select>
-			<span class="invalid-feedback" *ngIf="!species.valid && (species.touched || form.submitted)">Species required</span>
+			<span class="invalid-feedback" *ngIf="!speciesControl.valid && (speciesControl.touched || form.submitted)">Species required</span>
 		</div>
 
 		<div class="form-group required">
@@ -80,9 +82,10 @@
 				class="form-control"
 				id="homeworld"
 				ngModel
+				[(ngModel)]="homeworld"
 				name="homeworld">
 		</div>
-		<button type="submit" class="btn btn-success">Submit</button>
+		<button type="submit" class="btn btn-success" [disabled]="submitting">Submit</button>
 	</form>
 	<button class="btn btn-danger" (click)="cancel()">Cancel</button>
 </div>

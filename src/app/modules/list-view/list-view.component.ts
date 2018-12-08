@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { StarwarsService } from '../services/starwars.service';
-import { PaginatorService } from '../services/paginator.service';
+import { StarwarsService } from '../services/starwars.service/starwars.service';
+import { PaginatorService } from '../services/paginator.service/paginator.service';
+
+import { tap } from 'rxjs/operators';
 
 import { ICharacter } from '../shared/models/i-character'
 import { IPaginatorData } from '../shared/models/i-paginator-data'
@@ -23,10 +25,10 @@ export class ListViewComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		this.getCharacters(1);
+		this.getCharacters();
 	}
 
-	private getCharacters(page: number, filter:string = ""): void {
+	private getCharacters(page: number = 1, filter: string = this.searchValue): void {
 		this.starwarsService.getCharacters(page, filter)
 		.subscribe(
 			res => this.characterList = res,
@@ -35,17 +37,28 @@ export class ListViewComponent implements OnInit {
 		);
 	}
 
+	public deleteCharacter(character: ICharacter): void {
+		if(confirm("Are you sure want to delete "+character.name + "?")) {
+			this.starwarsService.deleteCharacter(character.id).pipe(
+				tap(() => this.getCharacters())
+			).subscribe(
+				() => {},
+				error => console.log(error),
+				() => alert(character.name + " Deleted!")
+			);
+		}
+	}
+
 	private getPages(): void {
 		this.paginatorService.getPages().subscribe(res => this.paginationPages = res);
 	}
 
 	public changePage(event: Event, page: number): void {
 		event.preventDefault();
-		this.getCharacters(page, this.searchValue);
+		this.getCharacters(page);
 	}
 
 	public search(): void {
-		this.getCharacters(1, this.searchValue);
-		console.log(this.characterList)
+		this.getCharacters();
 	}
 }

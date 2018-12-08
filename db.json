@@ -173,13 +173,6 @@
       "homeworld": ""
     },
     {
-      "id": 20,
-      "name": "sad",
-      "species": "Cerean",
-      "gender": "female",
-      "homeworld": "dad"
-    },
-    {
       "id": 21,
       "name": "sdas",
       "species": "Cerean",
@@ -201,46 +194,39 @@
       "homeworld": "cc"
     },
     {
-      "id": 24,
-      "name": "sdas",
+      "name": "Madzia",
+      "species": "Muun",
+      "gender": "female",
+      "homeworld": "Słupsk",
+      "id": 30
+    },
+    {
+      "name": "Pawel",
+      "species": "Besalisk",
+      "gender": "male",
+      "homeworld": "Iława",
+      "id": 31
+    },
+    {
+      "name": "asddddddddddddddd",
       "species": "Cerean",
-      "gender": "female",
-      "homeworld": "cc"
+      "gender": "male",
+      "homeworld": "",
+      "id": 32
     },
     {
-      "name": "f",
-      "species": "Besalisk",
-      "gender": "female",
-      "homeworld": "qeqe",
-      "id": 25
-    },
-    {
-      "name": "sad",
-      "species": "Besalisk",
-      "gender": "female",
-      "homeworld": "da",
-      "id": 26
-    },
-    {
-      "name": "ghf",
+      "name": "asddddddddddddddddd",
       "species": "Besalisk",
       "gender": "male",
       "homeworld": "",
-      "id": 27
+      "id": 33
     },
     {
-      "name": "asd",
-      "species": "Besalisk",
+      "name": "xxcx",
+      "species": "Cerean",
       "gender": "male",
       "homeworld": "",
-      "id": 28
-    },
-    {
-      "name": "d",
-      "species": "Besalisk",
-      "gender": "female",
-      "homeworld": "",
-      "id": 29
+      "id": 34
     }
   ]
 }

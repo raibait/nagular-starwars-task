@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { of, Observable } from 'rxjs';
 
-import { IPaginatorData } from '../shared/models/i-paginator-data'
+import { IPaginatorData } from '../../shared/models/i-paginator-data'
 
 @Injectable({
 	providedIn: 'root'

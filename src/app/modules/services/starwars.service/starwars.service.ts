@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 
-import { ICharacter } from '../shared/models/i-character'
-import { PaginatorService } from './paginator.service';
+import { ICharacter } from '../../shared/models/i-character'
+import { PaginatorService } from '../paginator.service/paginator.service';
 
 
 @Injectable({
@@ -13,8 +13,6 @@ import { PaginatorService } from './paginator.service';
 })
 export class StarwarsService {
 	private readonly starwarsApiUrl = 'http://localhost:3000';
-
-
 
 	constructor(
 		private readonly http: HttpClient,
@@ -55,5 +53,9 @@ export class StarwarsService {
 
 	public addCharacter(payload: ICharacter) {
 		return this.http.post(`${this.starwarsApiUrl}/characters`, payload);
+	}
+
+	public deleteCharacter(id: number): Observable<HttpResponse<Object>> {
+		return this.http.delete(`${this.starwarsApiUrl}/characters/${id}`,  { observe: 'response' });
 	}
 }

@@ -30,7 +30,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let character of characterList; index as i;">
+		<tr *ngFor="let character of characterList">
 			<th scope="row">{{character.id}}</th>
 			<td>{{character.name}}</td>
 			<td>{{character.species}}</td>
@@ -41,7 +41,7 @@
 					<button type="button" class="btn btn-secondary">
 						<i class="fa fa-pencil" aria-hidden="true"></i> Edit
 					</button>
-					<button type="button" class="btn btn-danger">
+					<button type="button" class="btn btn-danger" (click)="deleteCharacter(character)">
 						<i class="fa fa-trash-o" aria-hidden="true"></i> Remove
 					</button>
 				</div>

@@ -10,13 +10,17 @@ import { AppComponent } from './app.component';
 import { ListViewComponent } from './modules/list-view/list-view.component';
 import { AddNewComponent } from './modules/add-new/add-new.component';
 import { HeaderComponent } from './modules/header/header.component';
+import { ModalComponent } from './modules/shared/components/modal/modal.component';
+import { FormComponent } from './modules/shared/components/form/form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListViewComponent,
     AddNewComponent,
-    HeaderComponent
+    HeaderComponent,
+    ModalComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
