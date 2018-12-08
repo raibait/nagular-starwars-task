@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm, NgControl } from '@angular/forms';
 
 import { StarwarsService } from '../services/starwars.service/starwars.service';
+
+import { FormComponent } from '../shared/components/form/form.component';
+import { ICharacter } from '../shared/models/i-character';
 
 @Component({
 	selector: 'add-new',
@@ -11,17 +13,8 @@ import { StarwarsService } from '../services/starwars.service/starwars.service';
 })
 export class AddNewComponent implements OnInit {
 
-	@ViewChild('form') form: NgForm;
-	//@ViewChild('name') name: NgControl;
-	//@ViewChild('species') species: NgControl;
-	//@ViewChild('gender') gender: NgControl;
-
-	public speciesArr: String[];
 	public submitting: boolean = false;
-	@Input() name: string = 'asd';
-	@Input() species: string = 'Aleena';
-	@Input() gender: string = 'male';
-	@Input() homeworld: string = "Słupsk"
+	public species: String[];
 
 	constructor(
 		private readonly starwarsService: StarwarsService,
@@ -29,27 +22,21 @@ export class AddNewComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.starwarsService.getSpecies().subscribe(species => this.speciesArr = species);
+		this.starwarsService.getSpecies().subscribe(species => this.species = species);
 
 	}
 
-	public submitForm() {
-		console.log(this.form)
-		if(this.form.valid){
-			this.submitting = false
-			this.starwarsService.addCharacter(this.form.value).subscribe(
-				val => console.log(val),
-				error => {
-					console.log(error)
-					this.submitting = false
-				},
-				() => this.submitting = false
-			);
-			this.router.navigate(['/list-view']);
-		} else {
-			let invalidFields = [].slice.call(document.getElementsByClassName('ng-invalid'));
-			invalidFields[1].focus();
-		}
+	public addCharacter(form: ICharacter) {
+		this.submitting = true;
+		this.starwarsService.addCharacter(form).subscribe(
+			val => console.log(val),
+			error => {
+				console.log(error)
+				this.submitting = false
+			},
+			() => this.submitting = false
+		);
+		this.router.navigate(['/list-view']);
 	}
 
 	public cancel() {

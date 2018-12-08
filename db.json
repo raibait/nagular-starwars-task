@@ -227,6 +227,13 @@
       "gender": "male",
       "homeworld": "",
       "id": 34
+    },
+    {
+      "name": "dfad",
+      "species": "Droid",
+      "gender": "n/a",
+      "homeworld": "pies",
+      "id": 35
     }
   ]
 }
