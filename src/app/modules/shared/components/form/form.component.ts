@@ -15,7 +15,7 @@ export class FormComponent implements OnInit {
 
 	@Input() formDisabled: boolean = false;
 	@Input() speciesArr: String[];
-	@Input() editedCharacter: ICharacter = {name: null, species: null, gender: null, homeworld: null};
+	@Input() editedCharacter: ICharacter = {id: null, name: null, species: null, gender: null, homeworld: null};
 
 	@Output() formSubmit: EventEmitter<ICharacter> = new EventEmitter();
 	@Output() cancel: EventEmitter<any> = new EventEmitter();
@@ -34,7 +34,9 @@ export class FormComponent implements OnInit {
 	}
 
 	public cancelHandler() {
-		this.cancel.emit();
+		if(!this.form.dirty || (this.form.dirty && confirm("Are you sure want to discard changes?"))) {
+			this.cancel.emit();
+		}
 	}
 
 }

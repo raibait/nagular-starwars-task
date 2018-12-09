@@ -177,7 +177,7 @@
       "name": "sdas",
       "species": "Cerean",
       "gender": "female",
-      "homeworld": "cc"
+      "homeworld": "ccCCC"
     },
     {
       "id": 22,
@@ -215,13 +215,6 @@
       "id": 32
     },
     {
-      "name": "asddddddddddddddddd",
-      "species": "Besalisk",
-      "gender": "male",
-      "homeworld": "",
-      "id": 33
-    },
-    {
       "name": "xxcx",
       "species": "Cerean",
       "gender": "male",
@@ -234,6 +227,27 @@
       "gender": "n/a",
       "homeworld": "pies",
       "id": 35
+    },
+    {
+      "name": "Lando Calrissiann",
+      "species": "Human",
+      "gender": "male",
+      "homeworld": "Socorro",
+      "id": 36
+    },
+    {
+      "name": "Lando Calrissiann",
+      "species": "Human",
+      "gender": "male",
+      "homeworld": "Socorro",
+      "id": 37
+    },
+    {
+      "name": "Lando CalrissiannnNNNN",
+      "species": "Hutt",
+      "gender": "female",
+      "homeworld": "Socorro",
+      "id": 38
     }
   ]
 }

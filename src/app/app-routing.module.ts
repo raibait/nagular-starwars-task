@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ListViewComponent } from './modules/list-view/list-view.component';
 import { AddNewComponent } from './modules/add-new/add-new.component';
+import { EditComponent } from './modules/edit/edit.component';
 
 const routes: Routes = [
 	{
@@ -12,6 +13,10 @@ const routes: Routes = [
 	{
 		path: 'add-new',
 		component: AddNewComponent
+	},
+	{
+		path: 'edit/:id',
+		component: EditComponent
 	},
 	{
 		path: '',

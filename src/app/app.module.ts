@@ -12,6 +12,7 @@ import { AddNewComponent } from './modules/add-new/add-new.component';
 import { HeaderComponent } from './modules/header/header.component';
 import { ModalComponent } from './modules/shared/components/modal/modal.component';
 import { FormComponent } from './modules/shared/components/form/form.component';
+import { EditComponent } from './modules/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormComponent } from './modules/shared/components/form/form.component';
     AddNewComponent,
     HeaderComponent,
     ModalComponent,
-    FormComponent
+    FormComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

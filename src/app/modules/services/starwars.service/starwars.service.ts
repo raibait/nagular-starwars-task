@@ -55,6 +55,10 @@ export class StarwarsService {
 		return this.http.post(`${this.starwarsApiUrl}/characters`, payload);
 	}
 
+	public editCharacter(id: number, payload: ICharacter) {
+		return this.http.patch(`${this.starwarsApiUrl}/characters/${id}`, payload);
+	}
+
 	public deleteCharacter(id: number): Observable<HttpResponse<Object>> {
 		return this.http.delete(`${this.starwarsApiUrl}/characters/${id}`,  { observe: 'response' });
 	}
