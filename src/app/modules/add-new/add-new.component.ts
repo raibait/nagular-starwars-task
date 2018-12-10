@@ -22,16 +22,23 @@ export class AddNewComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.starwarsService.getSpecies().subscribe(species => this.species = species);
+		this.starwarsService.getSpecies().subscribe(
+			species => this.species = species,
+			err => this.handleError(err)
+		);
+	}
 
+	public handleError(error) {
+		// for example a snackbar
+		console.log(error);
 	}
 
 	public addCharacter(form: ICharacter) {
 		this.submitting = true;
 		this.starwarsService.addCharacter(form).subscribe(
 			val => console.log(val),
-			error => {
-				console.log(error)
+			err => {
+				this.handleError(err)
 				this.submitting = false
 			},
 			() => this.submitting = false
